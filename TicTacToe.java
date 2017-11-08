@@ -1,208 +1,210 @@
-import java.util.Scanner;
-
+import java.util.*;
 public class TicTacToe
 {
-  public static void main (String [] args)
+  public static String[][] b = 
   {
-    Scanner input = new Scanner (System.in);
-    String a1 = " ";
-    String a2 = " ";
-    String a3 = " ";
-    String b1 = " ";
-    String b2 = " ";
-    String b3 = " ";
-    String c1 = " ";
-    String c2 = " ";
-    String c3 = " ";
-    int p = 1;
-    System.out.println("   |   |   ");
-    System.out.println("---|---|---");
-    System.out.println("   |   |   ");
-    System.out.println("---|---|---");
-    System.out.println("   |   |   ");
-    String x = input.nextLine();
-    int winner = 0;
-    int move = 0;
-    while (winner == 0)
-    {
-    //Player 1's turn
-    if (x.equals("A1") && p == 1 && a1.equals(" "))
-    {
-    a1 = "o";
+    {" "," "," ","asdgasg"},
+    {" "," "," ",},
+    {" "," "," "},
+    {"sjrtjrtj","sdfhshd","shtsh","aaggdf"}
+  };
+  public static void printBoard()
+  {
+    System.out.format("%s | %s | %s%n",b[0][0],b[0][1],b[0][2]);
+    System.out.format("---------%n");
+    System.out.format("%s | %s | %s%n",b[1][0],b[1][1],b[1][2]);
+    System.out.format("---------%n");
+    System.out.format("%s | %s | %s%n",b[2][0],b[2][1],b[2][2]);
+  }
+  public static boolean placeMove(String t, int p)
+  {
+    int y=3;
+    int x=3;
+    boolean change = false;
     
-    p = 2;
-    move = move+1;
-    }
-    else if (x.equals("A2") && p == 1 && a2.equals(" "))
+    if (t.charAt(0)=='A' || t.charAt(0)=='a')
     {
-    a2 = "o";
+      y = 0;
+    }
+    else if (t.charAt(0)=='B' || t.charAt(0)=='b')
+    {
+      y = 1;
+    }
+    else if (t.charAt(0)=='C' || t.charAt(0)=='c')
+    {
+      y = 2;
+    }
     
-    p = 2;
-    move = move+1;
-    }
-    else if (x.equals("A3") && p == 1 && a3.equals(" "))
+    if (t.charAt(1)=='1')
     {
-    a3 = "o";
+      x = 0;
+    }
+    else if (t.charAt(1)=='2')
+    {
+      x = 1;
+    }
+    else if (t.charAt(1)=='3')
+    {
+      x = 2;
+    }
     
-    p = 2;
-    move = move+1;
-    }
-    else if (x.equals("B1") && p == 1 && b1.equals(" "))
+    if (p==1 && b[y][x].contains(" ") == true && x!=3 && y!=3)
     {
-    b1 = "o";
-    
-    p = 2;
-    move = move+1;
+      b[y][x]="o";
+      change = true;
     }
-    else if (x.equals("B2") && p == 1 && b2.equals(" "))
+    else if (p==2 && b[y][x].contains(" ") == true && x!=3 && y!=3)
     {
-    b2 = "o";
-    
-    p = 2;
-    move = move+1;
+      b[y][x]="x";
+      change = true;
     }
-    else if (x.equals("B3") && p == 1 && b3.equals(" "))
+    x=3;
+    y=3;
+    return change;
+  }
+  
+  public static boolean winnerx()
+  {
+    boolean winnerx = false;
+    if (b[0][0].equals("x") && b[0][1].equals("x") && b[0][2].equals("x"))
     {
-    b3 = "o";
-    
-    p = 2;
-    move = move+1;
+      winnerx = true;
     }
-    else if (x.equals("C1") && p == 1 && c1.equals(" "))
+    else if (b[1][0].equals("x") && b[1][1].equals("x") && b[1][2].equals("x"))
     {
-    c1 = "o";
-    
-    p = 2;
-    move = move+1;
+      winnerx = true;
     }
-    else if (x.equals("C2") && p == 1 && c2.equals(" "))
+    else if (b[2][0].equals("x") && b[2][1].equals("x") && b[2][2].equals("x"))
     {
-    c2 = "o";
-    
-    p = 2;
-    move = move+1;
+      winnerx = true;
     }
-    else if (x.equals("C3") && p == 1 && c3.equals(" "))
+    else if (b[0][0].equals("x") && b[1][0].equals("x") && b[2][0].equals("x"))
     {
-    c3 = "o";
-    
-    p = 2;
-    move = move+1;
+      winnerx = true;
     }
-    //Player 2's turn
-    else if (x.equals("A1") && p == 2 && a1.equals(" "))
+    else if (b[0][1].equals("x") && b[1][1].equals("x") && b[2][1].equals("x"))
     {
-    a1 = "x";
-    
-    p = 1;
-    move = move+1;
+      winnerx = true;
     }
-    else if (x.equals("A2") && p == 2 && a2.equals(" "))
+    else if (b[0][2].equals("x") && b[1][2].equals("x") && b[2][2].equals("x"))
     {
-    a2 = "x";
-    
-    p = 1;
-    move = move+1;
+      winnerx = true;
     }
-    else if (x.equals("A3") && p == 2 && a3.equals(" "))
+    else if (b[0][0].equals("x") && b[1][1].equals("x") && b[2][2].equals("x"))
     {
-    a3 = "x";
-    
-    p = 1;
-    move = move+1;
+      winnerx = true;
     }
-    else if (x.equals("B1") && p == 2 && b1.equals(" "))
+    else if (b[0][2].equals("x") && b[1][1].equals("x") && b[2][0].equals("x"))
     {
-    b1 = "x";
-    
-    p = 1;
-    move = move+1;
+      winnerx = true;
     }
-    else if (x.equals("B2") && p == 2 && b2.equals(" "))
-    {
-    b2 = "x";
-    
-    p = 1;
-    move = move+1;
-    }
-    else if (x.equals("B3") && p == 2 && b3.equals(" "))
-    {
-    b3 = "x";
-    
-    p = 1;
-    move = move+1;
-    }
-    else if (x.equals("C1") && p == 2 && c1.equals(" "))
-    {
-    c1 = "x";
-    
-    p = 1;
-    move = move+1;
-    }
-    else if (x.equals("C2") && p == 2 && c2.equals(" "))
-    {
-    c2 = "x";
-    
-    p = 1;
-    move = move+1;
-    }
-    else if (x.equals("C3") && p == 2 && c3.equals(" "))
-    {
-    c3 = "x";
-    
-    p = 1;
-    move = move+1;
-    }
-    //Writing the board
-    System.out.println(" "+a1+" | "+a2+" | "+a3+" ");
-    System.out.println("---|---|---");
-    System.out.println(" "+b1+" | "+b2+" | "+b3+" ");
-    System.out.println("---|---|---");
-    System.out.println(" "+c1+" | "+c2+" | "+c3+" ");
-    //When there's a winner
-    //Player 1 winning
-    if (a1.equals("o") && a2.equals("o") && a3.equals("o") || b1.equals("o") && b2.equals("o") && b3.equals("o") || c1.equals("o") && c2.equals("o") && c3.equals("o"))
-    {
-      winner=1;
-      System.out.println("Player 1 has won!");
-    }
-    else if (a1.equals("o") && b1.equals("o") && c1.equals("o") || a2.equals("o") && b2.equals("o") && c2.equals("o") || a3.equals("o") && b3.equals("o") && c3.equals("o"))
-    {
-      winner=1;
-      System.out.println("Player 1 has won!");
-    }
-    else if (a1.equals("o") && b2.equals("o") && c3.equals("o") || a3.equals("o") && b2.equals("o") && c1.equals("o"))
-    {
-      winner=1;
-      System.out.println("Player 1 has won!");
-    }
-    //Player 2 winning
-    else if (a1.equals("x") && a2.equals("x") && a3.equals("x") || b1.equals("x") && b2.equals("x") && b3.equals("x") || c1.equals("x") && c2.equals("x") && c3.equals("x"))
-    {
-      winner=1;
-      System.out.println("Player 2 has won!");
-    }
-    else if (a1.equals("x") && b1.equals("o") && c1.equals("x") || a2.equals("x") && b2.equals("x") && c2.equals("x") || a3.equals("x") && b3.equals("x") && c3.equals("x"))
-    {
-      winner=1;
-      System.out.println("Player 2 has won!");
-    }
-    else if (a1.equals("x") && b2.equals("x") && c3.equals("x") || a3.equals("x") && b2.equals("x") && c1.equals("x"))
-    {
-      winner=1;
-      System.out.println("Player 2 has won!");
-    }
-    //If there is a tie
-    else if (move >= 9)
-    {
-      System.out.println("Tie!");
-      winner=1;
-    }
-    //No end result
     else
     {
-      x = input.nextLine();
+      winnerx = false;
     }
+    return winnerx;
+  }
+  
+  public static boolean winnero()
+  {
+    boolean winnero = false;
+    if (b[0][0].equals("o") && b[0][1].equals("o") && b[0][2].equals("o"))
+    {
+      winnero = true;
+    }
+    else if (b[1][0].equals("o") && b[1][1].equals("o") && b[1][2].equals("o"))
+    {
+      winnero = true;
+    }
+    else if (b[2][0].equals("o") && b[2][1].equals("o") && b[2][2].equals("o"))
+    {
+      winnero = true;
+    }
+    else if (b[0][0].equals("o") && b[1][0].equals("o") && b[2][0].equals("o"))
+    {
+      winnero = true;
+    }
+    else if (b[0][1].equals("o") && b[1][1].equals("o") && b[2][1].equals("o"))
+    {
+      winnero = true;
+    }
+    else if (b[0][2].equals("o") && b[1][2].equals("o") && b[2][2].equals("o"))
+    {
+      winnero = true;
+    }
+    else if (b[0][0].equals("o") && b[1][1].equals("o") && b[2][2].equals("o"))
+    {
+      winnero = true;
+    }
+    else if (b[0][2].equals("o") && b[1][1].equals("o") && b[2][0].equals("o"))
+    {
+      winnero = true;
+    }
+    else
+    {
+      winnero = false;
+    }
+    return winnero;
+  }
+  
+  
+  public static void main (String [] args)
+  {
+    Scanner in = new Scanner (System.in);
+    printBoard();
+    String place;
+    int player = 1;
+    int m;
+    boolean change;
+    
+    for (m = 0; m<9; m++)
+    {
+      if (player == 1)
+      {
+        System.out.format("Player 1's Turn: ");
+        place = in.nextLine();
+        change = placeMove(place,player);
+        while (change == false)
+        {
+          System.out.format("                 ");
+          place = in.nextLine();
+          change = placeMove(place,player);
+        }
+        player++;
+        printBoard();
+        boolean winnero = winnero();
+        if (winnero == true)
+        {
+          m=10;
+          System.out.format("Player 1 has won");
+        }
+        change = false;
+      }
+      else if (player == 2)
+      {
+        System.out.format("Player 2's Turn: ");
+        place = in.nextLine();
+        change = placeMove(place,player);
+        while (change == false)
+        {
+          System.out.format("                 ");
+          place = in.nextLine();
+          change = placeMove(place,player);
+        }
+        player--;
+        printBoard();
+        boolean winnerx = winnerx();
+        if (winnerx == true)
+        {
+          m=10;
+          System.out.format("Player 2 has won");
+        }
+        change = false;
+      }
+    }
+    if (m==9)
+    {
+      System.out.format("Tie!%n");
     }
   }
 }
