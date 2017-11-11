@@ -22,32 +22,38 @@ public class TicTacToe
     int x=3;
     boolean change = false;
     
-    if (t.charAt(0)=='A' || t.charAt(0)=='a')
+    if (t.length()==2)
     {
-      y = 0;
+      if (t.charAt(0)=='A' || t.charAt(0)=='a')
+      {
+        y = 0;
+      }
+      else if (t.charAt(0)=='B' || t.charAt(0)=='b')
+      {
+        y = 1;
+      }
+      else if (t.charAt(0)=='C' || t.charAt(0)=='c')
+      {
+        y = 2;
+      }
+      if (t.charAt(1)=='1')
+      {
+        x = 0;
+      }
+      else if (t.charAt(1)=='2')
+      {
+        x = 1;
+      }
+      else if (t.charAt(1)=='3')
+      {
+        x = 2;
+      }
+      else
+      {
+        y=3;
+        x=3;
+      }
     }
-    else if (t.charAt(0)=='B' || t.charAt(0)=='b')
-    {
-      y = 1;
-    }
-    else if (t.charAt(0)=='C' || t.charAt(0)=='c')
-    {
-      y = 2;
-    }
-    
-    if (t.charAt(1)=='1')
-    {
-      x = 0;
-    }
-    else if (t.charAt(1)=='2')
-    {
-      x = 1;
-    }
-    else if (t.charAt(1)=='3')
-    {
-      x = 2;
-    }
-    
     if (p==1 && b[y][x].contains(" ") == true && x!=3 && y!=3)
     {
       b[y][x]="o";
@@ -63,90 +69,58 @@ public class TicTacToe
     return change;
   }
   
-  public static boolean winnerx()
+  public static int winner(int player)
   {
-    boolean winnerx = false;
-    if (b[0][0].equals("x") && b[0][1].equals("x") && b[0][2].equals("x"))
+    int winner = 0;
+    String symbol = "";
+    
+    if (player==1)
     {
-      winnerx = true;
+      symbol = "o";
     }
-    else if (b[1][0].equals("x") && b[1][1].equals("x") && b[1][2].equals("x"))
+    else if (player==2)
     {
-      winnerx = true;
+      symbol = "x";
     }
-    else if (b[2][0].equals("x") && b[2][1].equals("x") && b[2][2].equals("x"))
+    
+    if (b[0][0].equals(symbol) && b[0][1].equals(symbol) && b[0][2].equals(symbol))
     {
-      winnerx = true;
+      winner = player;
     }
-    else if (b[0][0].equals("x") && b[1][0].equals("x") && b[2][0].equals("x"))
+    else if (b[1][0].equals(symbol) && b[1][1].equals(symbol) && b[1][2].equals(symbol))
     {
-      winnerx = true;
+      winner = player;
     }
-    else if (b[0][1].equals("x") && b[1][1].equals("x") && b[2][1].equals("x"))
+    else if (b[2][0].equals(symbol) && b[2][1].equals(symbol) && b[2][2].equals(symbol))
     {
-      winnerx = true;
+      winner = player;
     }
-    else if (b[0][2].equals("x") && b[1][2].equals("x") && b[2][2].equals("x"))
+    else if (b[0][0].equals(symbol) && b[1][0].equals(symbol) && b[2][0].equals(symbol))
     {
-      winnerx = true;
+      winner = player;
     }
-    else if (b[0][0].equals("x") && b[1][1].equals("x") && b[2][2].equals("x"))
+    else if (b[0][1].equals(symbol) && b[1][1].equals(symbol) && b[2][1].equals(symbol))
     {
-      winnerx = true;
+      winner = player;
     }
-    else if (b[0][2].equals("x") && b[1][1].equals("x") && b[2][0].equals("x"))
+    else if (b[0][2].equals(symbol) && b[1][2].equals(symbol) && b[2][2].equals(symbol))
     {
-      winnerx = true;
+      winner = player;
+    }
+    else if (b[0][0].equals(symbol) && b[1][1].equals(symbol) && b[2][2].equals(symbol))
+    {
+      winner = player;
+    }
+    else if (b[0][2].equals(symbol) && b[1][1].equals(symbol) && b[2][0].equals(symbol))
+    {
+      winner = player;
     }
     else
     {
-      winnerx = false;
+      winner = 0;
     }
-    return winnerx;
+    return winner;
   }
-  
-  public static boolean winnero()
-  {
-    boolean winnero = false;
-    if (b[0][0].equals("o") && b[0][1].equals("o") && b[0][2].equals("o"))
-    {
-      winnero = true;
-    }
-    else if (b[1][0].equals("o") && b[1][1].equals("o") && b[1][2].equals("o"))
-    {
-      winnero = true;
-    }
-    else if (b[2][0].equals("o") && b[2][1].equals("o") && b[2][2].equals("o"))
-    {
-      winnero = true;
-    }
-    else if (b[0][0].equals("o") && b[1][0].equals("o") && b[2][0].equals("o"))
-    {
-      winnero = true;
-    }
-    else if (b[0][1].equals("o") && b[1][1].equals("o") && b[2][1].equals("o"))
-    {
-      winnero = true;
-    }
-    else if (b[0][2].equals("o") && b[1][2].equals("o") && b[2][2].equals("o"))
-    {
-      winnero = true;
-    }
-    else if (b[0][0].equals("o") && b[1][1].equals("o") && b[2][2].equals("o"))
-    {
-      winnero = true;
-    }
-    else if (b[0][2].equals("o") && b[1][1].equals("o") && b[2][0].equals("o"))
-    {
-      winnero = true;
-    }
-    else
-    {
-      winnero = false;
-    }
-    return winnero;
-  }
-  
   
   public static void main (String [] args)
   {
@@ -170,14 +144,13 @@ public class TicTacToe
           place = in.nextLine();
           change = placeMove(place,player);
         }
-        player++;
         printBoard();
-        boolean winnero = winnero();
-        if (winnero == true)
+        if (winner(player) == 1)
         {
           m=10;
-          System.out.format("Player 1 has won");
+          System.out.format("Player 1 has won%n");
         }
+        player++;
         change = false;
       }
       else if (player == 2)
@@ -191,14 +164,13 @@ public class TicTacToe
           place = in.nextLine();
           change = placeMove(place,player);
         }
-        player--;
         printBoard();
-        boolean winnerx = winnerx();
-        if (winnerx == true)
+        if (winner(player) == 2)
         {
           m=10;
-          System.out.format("Player 2 has won");
+          System.out.format("Player 2 has won%n");
         }
+        player--;
         change = false;
       }
     }
